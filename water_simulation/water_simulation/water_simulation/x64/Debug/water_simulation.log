@@ -1,0 +1,29 @@
+﻿  main.cpp
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(59,57): warning C4305: “参数”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(81,26): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(101,28): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(108,76): warning C4305: “参数”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(117,99): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(117,88): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(129,27): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(130,27): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(133,48): warning C4305: “=”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(134,57): warning C4305: “=”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(135,52): warning C4305: “=”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(136,57): warning C4305: “=”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(137,57): warning C4305: “=”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(138,53): warning C4305: “=”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(139,57): warning C4305: “=”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(140,53): warning C4305: “=”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(153,117): warning C4305: “参数”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(166,113): warning C4305: “参数”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(177,113): warning C4305: “参数”: 从“double”到“float”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(207,80): warning C4305: “参数”: 从“double”到“GLfloat”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(207,73): warning C4305: “参数”: 从“double”到“GLfloat”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(207,66): warning C4305: “参数”: 从“double”到“GLfloat”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(228,70): warning C4305: “参数”: 从“double”到“GLfloat”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(228,63): warning C4305: “参数”: 从“double”到“GLfloat”截断
+D:\Water_simulation\water_simulation\Water_simulation\main.cpp(228,56): warning C4305: “参数”: 从“double”到“GLfloat”截断
+  water_simulation.vcxproj -> D:\Water_simulation\water_simulation\Water_simulation\x64\Debug\water_simulation.exe
+  'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
+  或批处理文件。
