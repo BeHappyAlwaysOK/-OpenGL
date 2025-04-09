@@ -10,7 +10,7 @@ water_surface::water_surface() {
     glGenBuffers(1, &points_vbo);
 
     // Initialize water heights
-    //u¿ØÖÆË®µÄ¸ß¶È¼´zÖá£¬vÊÇËÙ¶È
+    //uæ§åˆ¶æ°´çš„é«˜åº¦å³zè½´ï¼Œvæ˜¯é€Ÿåº¦
     for (int i = 0; i < this->width; i++) {
         for (int j = 0; j < this->height; j++) {
             if (i > 28 && i < 32 && j > 28 && j < 32) {
@@ -31,7 +31,7 @@ void water_surface::update(float dt) {
         for (int j = 0; j < this->height; j++) {
             float v1, v2, v3, v4;
 
-            //Íø¸ñµÄ±ß½çÌõ¼ş
+            //ç½‘æ ¼çš„è¾¹ç•Œæ¡ä»¶
             if (i == 0) {
                 v1 = this->u[i][j];
             } else {
@@ -56,44 +56,42 @@ void water_surface::update(float dt) {
                 v4 = this->u[i][j + 1];
             }
 
-            //(v1 + v2 + v3 + v4) - 4 * this->u[i][j]ÊÇËÄ¸ö·½Ïò¼õÈ¥×ÔÉíijµÄ²îÖµ
-            float f = c * c * ((v1 + v2 + v3 + v4) - 4 * this->u[i][j]);    //Ã»ÓĞÕâ¸öº¯ÊıÍ¬ÑùÊÇ²»±ä»¯µÄ£¬²¢ÇÒfÎª³£Êıº£°ÎÒ²»áÌá¸ß
-            this->v[i][j] += f * dt;    //¸Ğ¾õ¸Ãº¯ÊıÃ»Ê²Ã´ÎïÀíÒâÒå£¬ÖØÒªµÄÒªÓĞÀíÓĞ¾İµØ¸øÒ»¸ö³õËÙ¶È
-            this->v[i][j] *= 0.995; //ÕâÒ»²½º¯ÊıµÄÒâÒåÊÇµİ¼õ£¬²¨ÎÆ¿Ï¶¨²»ÊÇÒ»Ö±Ôö¼ÓµÄ£¬Ëæ×Å·´µ¯Òª²»Í£µÄ¼õÉÙÖ±ÖÁÎª0
-            this->u_new[i][j] = u[i][j] + v[i][j] * dt; //¸ß¶ÈµÈÓÚ³õÊ¼¼Ó±ä»¯ËÙ¶ÈºÍÊ±¼äºÃÀí½âµÄ
+            //(v1 + v2 + v3 + v4) - 4 * this->u[i][j]æ˜¯å››ä¸ªæ–¹å‘å‡å»è‡ªèº«ijçš„å·®å€¼
+            float f = c * c * ((v1 + v2 + v3 + v4) - 4 * this->u[i][j]);    //æ²¡æœ‰è¿™ä¸ªå‡½æ•°åŒæ ·æ˜¯ä¸å˜åŒ–çš„ï¼Œå¹¶ä¸”fä¸ºå¸¸æ•°æµ·æ‹”ä¹Ÿä¼šæé«˜
+            this->v[i][j] += f * dt;    //ç»™ä¸€ä¸ªåˆé€Ÿåº¦
+            this->v[i][j] *= 0.995; //è¿™ä¸€æ­¥å‡½æ•°çš„æ„ä¹‰æ˜¯é€’å‡ï¼Œæ³¢çº¹è‚¯å®šä¸æ˜¯ä¸€ç›´å¢åŠ çš„ï¼Œéšç€åå¼¹è¦ä¸åœçš„å‡å°‘ç›´è‡³ä¸º0
+            this->u_new[i][j] = u[i][j] + v[i][j] * dt; //é«˜åº¦ç­‰äºåˆå§‹åŠ å˜åŒ–é€Ÿåº¦å’Œæ—¶é—´å¥½ç†è§£çš„
         }
     }
 
-    //ºÜºÃÀí½â£¬°ÑÎ»ÖÃ´Óu_newÈ«²¿»»µ½uÈ¥
+    //å¾ˆå¥½ç†è§£ï¼ŒæŠŠä½ç½®ä»u_newå…¨éƒ¨æ¢åˆ°uå»
     for (int i = 0; i < this->width; i++) {
         for (int j = 0; j < this->height; j++) {
             this->u[i][j] = this->u_new[i][j];
-            this->control_point_heights[i][j] = this->u[i][j]; //»»³É³£ÊıÒ²Ã»É¶±ä»¯
+            this->control_point_heights[i][j] = this->u[i][j]; //æ¢æˆå¸¸æ•°ä¹Ÿæ²¡å•¥å˜åŒ–
         }
     }
 
-    //¦¤xºÍ¦¤y³£Á¿²»ÊÇÔ´´úÂëÀïÃæµÄÒâË¼£¬Õâ¸ö´¿´â¾ÍÊÇÎªÁË·½±ãËãi£¬jÖÜÎ§µÄµã×ö×¼±¸µÄ
+    //Î”xå’ŒÎ”yå¸¸é‡ä¸æ˜¯æºä»£ç é‡Œé¢çš„æ„æ€ï¼Œè¿™ä¸ªçº¯ç²¹å°±æ˜¯ä¸ºäº†æ–¹ä¾¿ç®—iï¼Œjå‘¨å›´çš„ç‚¹åšå‡†å¤‡çš„
     static int x_delta[9] = { 0, -1, -1, 0, 1, 1, 1, 0, -1 };
     static int y_delta[9] = { 0, 0, -1, -1, -1, 0, 1, 1, 1 };
 
-    //¹ØÓÚi£¬jÖÜÎ§µÄ¾Å¸öµã
+    //å…³äºiï¼Œjå‘¨å›´çš„ä¹ä¸ªç‚¹
     for (int i = 3; i < this->width; i += 3) {
         for (int j = 3; j < this->height; j += 3) {
             vec3 points[9];
 
-            //Õâ¸öÎÒ¿ÉÒÔÀí½âÎªÔÚËãx£¬yµÄµØµãÒÔ¼°¸ß¶È
+            //è¿™ä¸ªæˆ‘å¯ä»¥ç†è§£ä¸ºåœ¨ç®—xï¼Œyçš„åœ°ç‚¹ä»¥åŠé«˜åº¦
             for (int k = 0; k < 9; k++) {
                 int x_index = i + x_delta[k];
                 int y_index = j + y_delta[k];
 
-                //´ËÊ±¾ÍÊÇ½«µã×ª»»ÎªÁËÍø¸ñ,ÎÒ±È½Ï²»Àí½âµÄÊÇÕâ¸öÍø¸ñµÄ×ª»»¸ú½Ì³ÌÉÏÊÇ²»Ò»ÑùµÄ
-                //indexÊÇÒÔi£¬jÎªÖĞĞÄ½øĞĞµÄ1µÄÑÓÉì£¬Ã¿¸öÑÓÉì
+                //indexæ˜¯ä»¥iï¼Œjä¸ºä¸­å¿ƒè¿›è¡Œçš„1çš„å»¶ä¼¸ï¼Œæ¯ä¸ªå»¶ä¼¸
                 points[k].x = -3 + 6 * (1 - (x_index / (float)this->width));
                 points[k].y = -3 + 6 * (1 - (y_index / (float)this->height));
                 points[k].z = this->control_point_heights[x_index][y_index];
             }
 
-            //ÏÂÃæ¿ªÊ¼ÎÒÍêÈ«¿ÉÒÔÀí½âÎª¸Ã´úÂëÓÃÁËÒ»¸ö¹«Ê½¿ØÖÆË®ÃæµÄ¸ß¶È
             float sum_xx = 0.0;
             float sum_yy = 0.0;
             float sum_xy = 0.0;
@@ -112,12 +110,9 @@ void water_surface::update(float dt) {
             float a = (sum_yz * sum_xy - sum_xz * sum_yy) / D;
             float b = (sum_xy * sum_xz - sum_xx * sum_yz) / D;
 
-            //nµÄz×ø±êºãÎª1
+            //nçš„zåæ ‡æ’ä¸º1
             vec3 n(a, b, 1);
-            //pÊÇÖĞ¼äµÄµã£¬ÊÇµ±Ç°ÕıÔÚÌÖÂÛµÄµã£¬ËûÃÇµÄ¸ß¶ÈµÈÓÚpµÄ¸ß¶È¼ÓÉÏÒ»¸ö¸ù¾İx£¬yµÄÖµÆÀ¹ÀµÄ¸ß¶È
-            //Õâ¸ö¹«Ê½¿´²»Ã÷°×Ô­ÀíÒ²Ã»ÓĞ½²£¬ÂÔ¹ı£¬±»¿½´òµ½Ò²Ã»ÓĞ°ì·¨
-            //±È½ÏÒÉ»óµÄÊÇz²»¹ÜÔõÃ´ËµÒ»¶¨»áÓĞ´óÓÚµÄÇé¿ö£¬ÄÇÃ´²»»áÒ»Ö±Ôö¼ÓÂğ£¿
-            //ÎÒÊÇÒÉ»ó²»½âµÄ
+            //pæ˜¯ä¸­é—´çš„ç‚¹ï¼Œæ˜¯å½“å‰æ­£åœ¨è®¨è®ºçš„ç‚¹ï¼Œä»–ä»¬çš„é«˜åº¦ç­‰äºpçš„é«˜åº¦åŠ ä¸Šä¸€ä¸ªæ ¹æ®xï¼Œyçš„å€¼è¯„ä¼°çš„é«˜åº¦
             vec3 p = points[0];
             for (int k = 1; k < 9; k++) {
                 vec3 p0 = points[k];
@@ -129,8 +124,8 @@ void water_surface::update(float dt) {
         }
     }
 
-    //´ÓÍø¸ñ×ª»»ÎªÁ£×Ó
-    //ËãÈ¨ÖØ
+    //ä»ç½‘æ ¼è½¬æ¢ä¸ºç²’å­
+    //ç®—æƒé‡
     int point_index = 0;
     for (float x = -3; x < 3; x += 0.1) {
         for (float y = -3; y < 3; y += 0.1) {
@@ -150,7 +145,7 @@ void water_surface::update(float dt) {
                         continue;
                     }
 
-                    //Ò»Ö±²»Àí½â³Ë6¼õ3µÄÎïÀíÒâÒåÊÇÊ²Ã´
+                    //ä¸€ç›´ä¸ç†è§£ä¹˜6å‡3çš„ç‰©ç†æ„ä¹‰æ˜¯ä»€ä¹ˆ
                     float u = -3 + 6 * (k / (float)this->width);
                     float v = -3 + 6 * (l / (float)this->height);
 
@@ -166,8 +161,8 @@ void water_surface::update(float dt) {
         }
     }
 
-    //Ëã·¨ÏòÁ¿Ò²ÓĞÏ¸½Ú
-    //µãÊÇÒÔi£¬jÎªÖĞĞÄµÄÎå¸öµã£¬²»¿¼ÂÇ±ß½Ç
+    //ç®—æ³•å‘é‡ä¹Ÿæœ‰ç»†èŠ‚
+    //ç‚¹æ˜¯ä»¥iï¼Œjä¸ºä¸­å¿ƒçš„äº”ä¸ªç‚¹ï¼Œä¸è€ƒè™‘è¾¹è§’
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             // Average the normals for each triangle around us
@@ -276,7 +271,7 @@ void water_surface::update(float dt) {
     }
 
     // Calculate the elements for each triangle
-    //¶ÔpointsµÄË÷Òı»º³å
+    //å¯¹pointsçš„ç´¢å¼•ç¼“å†²
     int e_i = 0;
     for (int i = 0; i < N - 1; i++) {
         for (int j = 0; j < N - 1; j++) {
@@ -299,7 +294,7 @@ void water_surface::update(float dt) {
     glBindVertexArray(vao);
 
 
-    //×îºóÈı¸öºÃÀí½â£¬·´Õı¾ÍÊÇpoints£¬normals£¬elements
+    //æœ€åä¸‰ä¸ªå¥½ç†è§£ï¼Œåæ­£å°±æ˜¯pointsï¼Œnormalsï¼Œelements
     // Set up the points vbo
     for (int i = 0; i < N * N; i++) {
         points_buffer[i * 3] = points[i].x;
